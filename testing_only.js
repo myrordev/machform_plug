@@ -1,3 +1,7 @@
 $(document).ready(function() {
-    debugger;
+    $('form.appnitro').submit(function(evt) {
+       evt.preventDefault();
+       debugger;
+       return false;
+    });
 });
