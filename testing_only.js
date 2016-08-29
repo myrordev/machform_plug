@@ -3,14 +3,27 @@ $(document).ready(function() {
     // Generate hidden form elements
     var fake_form;
     fake_form = '';
-    fake_form = '<form id="form1" action="https://pay.instamed.com/Form/Payments/New?id=Premiumpaymentdemo&incontext=true" method="POST" target="instamed"><input name="incontext" type="hidden" value="true" /><input type="submit" value="Pay Now" /></form>';
+    fake_form = '<form id="fakeForm" action="https://pay.instamed.com/Form/Payments/New?id=Premiumpaymentdemo&incontext=true" method="POST" target="instamed" style="visibility:hidden;">';
+                + '<input name="incontext" type="hidden" value="true" />'
+                + '<input id="PatientFirstName" name="PatientFirstName" type="hidden" />'
+                + '<input id="PatientLastName" name="PatientLastName" type="hidden" />'
+                + '<input id="AccountHolderEmail" name="AccountHolderEmail" type="hidden" />'
+                + '<input id="Amount" name="Amount" type="hidden" value="10" />'
+                + '<input id="AdditionalInfo2" name="AdditionalInfo2" type="hidden" value="Testing Form" />'
+                + '</form>';
     $('body').append(fake_form);
 
     // Listen to Form submit action
     // Decline origin form submit action and send fake form request
     $('form.appnitro').submit(function(evt) {
        evt.preventDefault();
-       debugger;
+       evt.stopPropagation();
+
+       $('#fakeForm #PatientFirstName').val($(this).find('#element_1_1').val());
+       $('#fakeForm #PatientLastName').val($(this).find('#element_1_2').val());
+       $('#fakeForm #AccountHolderEmail').val($(this).find('#element_2').val());
+
+       $('#fakeForm').submit();
 
        return false;
     });
