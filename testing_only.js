@@ -3,12 +3,12 @@ $(document).ready(function() {
     // Generate hidden form elements
     var fake_form;
     fake_form = '';
-    fake_form = '<form id="fakeForm" action="https://pay.instamed.com/Form/Payments/New?id=Premiumpaymentdemo&incontext=true" method="POST" target="instamed" style="visibility:hidden;">';
+    fake_form = '<form id="fakeForm" method="POST" target="instamed" style="visibility:hidden;">';
                 + '<input name="incontext" type="hidden" value="true" />'
                 + '<input id="PatientFirstName" name="PatientFirstName" type="hidden" />'
                 + '<input id="PatientLastName" name="PatientLastName" type="hidden" />'
                 + '<input id="AccountHolderEmail" name="AccountHolderEmail" type="hidden" />'
-                + '<input id="Amount" name="Amount" type="hidden" value="10" />'
+                + '<input id="Amount" name="Amount" type="hidden" value="1" />'
                 + '<input id="AdditionalInfo2" name="AdditionalInfo2" type="hidden" value="Testing Form" />'
                 + '</form>';
     $('body').append(fake_form);
@@ -19,9 +19,15 @@ $(document).ready(function() {
        evt.preventDefault();
        evt.stopPropagation();
 
-       $('#fakeForm #PatientFirstName').val($(this).find('#element_1_1').val());
-       $('#fakeForm #PatientLastName').val($(this).find('#element_1_2').val());
-       $('#fakeForm #AccountHolderEmail').val($(this).find('#element_2').val());
+       var queryParam = '&PatientFirstName=' + $(this).find('#element_1_1').val();
+       queryParam += '&PatientLastName=' + $(this).find('#element_1_2').val();
+       queryParam += '&AccountHolderEmail=' + $(this).find('#element_2').val();
+       queryParam += '&Amount=' + $(this).find('#element_17').val();
+       $('#fakeForm').attr('action', 'https://pay.instamed.com/Form/Payments/New?id=Premiumpaymentdemo&incontext=true&' + queryParam );
+
+    //    $('#fakeForm #PatientFirstName').val($(this).find('#element_1_1').val());
+    //    $('#fakeForm #PatientLastName').val($(this).find('#element_1_2').val());
+    //    $('#fakeForm #AccountHolderEmail').val($(this).find('#element_2').val());
 
        $('#fakeForm').submit();
        debugger;
