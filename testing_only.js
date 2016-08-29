@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    debugger;
     // Generate hidden form elements
     var fake_form;
     fake_form = '';
@@ -24,7 +24,7 @@ $(document).ready(function() {
        $('#fakeForm #AccountHolderEmail').val($(this).find('#element_2').val());
 
        $('#fakeForm').submit();
-
+       debugger;
        return false;
     });
 
