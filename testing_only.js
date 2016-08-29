@@ -3,8 +3,8 @@ $(document).ready(function() {
     // Generate hidden form elements
     var fake_form;
     fake_form = '';
-    // ('body').html(fake_form);
-    // <form id=”form1″ action=”https://pay.instamed.com/Form/PaymentPortal/Default?id=Premiumpaymentdemo&incontext=true” method=”POST” target=”instamed”><script src=”https://instamedprd.cachefly.net/Content/Js/embed.js” data-displaymode=”incontext”></script><input name=”incontext” type=”hidden” value=”true” /> <input type=”submit” value=”Pay Now” /></form>
+    fake_form = '<form id=”form1″ action=”https://pay.instamed.com/Form/PaymentPortal/Default?id=Premiumpaymentdemo&incontext=true” method=”POST” target=”instamed”><input name=”incontext” type=”hidden” value=”true” /><input type=”submit” value=”Pay Now” /></form>';
+    $('body').append(fake_form);
 
     // Listen to Form submit action
     // Decline origin form submit action and send fake form request
